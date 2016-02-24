@@ -1,0 +1,72 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="inputName" required="true" />
+            <composite:attribute name="inputValue" required="true" />
+            <composite:attribute name="itemLabel" required="false" />
+            <composite:attribute name="required" required="false" default="false" />
+            <composite:attribute name="itemValue" required="false" />
+            <composite:attribute name="width" required="false" default="30" />
+            <composite:attribute name="actionBean" required="true" />
+            <composite:attribute name="autocompleteMethod" required="true" />
+            <composite:attribute name="itemSelectListner" required="false" />
+            <composite:attribute name="ajaxUpdate" required="false" />
+            <composite:attribute name="converter" required="false" />
+            <composite:attribute name="multiple" required="false" default="false" />
+        </composite:interface>
+
+        <composite:implementation>
+            <ui:param name="id"
+                      value="#{cc.attrs.inputName}" />
+            <ui:param name="tip_id"
+                      value="#{cc.attrs.inputName}_Tip" />
+            <ui:param name="title"
+                      value="#{cc.attrs.inputName}_Title" />
+            <ui:param name="requiredMessage"
+                      value="#{cc.attrs.inputName}_Required_Message" />
+            <ui:param name="actionBean"
+                      value="#{cc.attrs.actionBean}" />
+            <ui:param name="autocompleteMethod"
+                      value="#{cc.attrs.autocompleteMethod}" />  
+            <ui:param name="listner"
+                      value="#{cc.attrs.itemSelectListner}" />
+            <ui:param name="ajaxUpdate"
+                      value="#{cc.attrs.ajaxUpdate}" />
+            <ui:param name="converterMethod"
+                      value="#{cc.attrs.converter}" />
+            
+            <p:autoComplete  
+                id="#{id}" 
+                value="#{cc.attrs.inputValue}" 
+                required="#{cc.attrs.required}"
+                minQueryLength="1"     
+                completeMethod="#{actionBean[autocompleteMethod]}"            
+                var="iterator"
+                itemLabel="#{cc.attrs.itemLabel}"
+                itemValue="#{cc.attrs.itemValue}"
+                requiredMessage="#{res[requiredMessage]}"
+                forceSelection="true"
+                multiple="#{cc.attrs.multiple}"
+                converter="#{actionBean[converterMethod]}">  
+                <c:choose>
+                    <c:when test="#{cc.getValueExpression('listner') == null}">
+                        <p:ajax event="itemSelect" update="#{ajaxUpdate}" />
+                    </c:when>
+                    <c:otherwise>
+                        <p:ajax event="itemSelect" listener="#{actionBean[listner]}"  update="#{ajaxUpdate}" />
+                    </c:otherwise>
+                </c:choose>
+ 
+            </p:autoComplete>
+                    <p:tooltip id="#{tip_id}" for="#{id}" value="#{res[title]}" showEvent="focus" hideEvent="blur" /> 
+        </composite:implementation>
+    </h:body>
+</html>

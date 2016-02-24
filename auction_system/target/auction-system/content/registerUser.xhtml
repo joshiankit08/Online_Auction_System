@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:gs="http://java.sun.com/jsf/composite/gs">
+
+    <ui:composition>
+	<p:panel>
+		Please complete the following to register yourself to our <b> Online Auction System </b>
+		<br/><br/>
+
+		<h:panelGrid id="userGrid" columns="2">
+		
+		<gs:textInputLabel required="true"
+						inputName="Username" />
+		<gs:textInput inputName="Username" id="Username"
+						required="true"
+						inputValue="#{registerUserController.user.username}" />
+					
+		<gs:textInputLabel required="true"
+						inputName="Password" />
+		<gs:passwordInput inputName="Password" id="Password"
+						required="true"
+						inputValue="#{registerUserController.user.password}" />
+		
+		<gs:textInputLabel required="true"
+						inputName="Firstname" />
+		<gs:textInput inputName="Firstname" id="Firstname"
+						required="true"
+						inputValue="#{registerUserController.user.firstname}" />
+		
+		<gs:textInputLabel required="true"
+						inputName="Lastname" />
+		<gs:textInput inputName="Lastname" id="Lastname"
+						required="true"
+						inputValue="#{registerUserController.user.lastname}" />
+		
+		<gs:textInputLabel required="true"
+						inputName="EmailID" />
+		<gs:textInput inputName="EmailID" id="EmailID"
+						required="true"
+						inputValue="#{registerUserController.user.emailID}"
+						validation="emailValidator"  />
+		
+		</h:panelGrid>
+	
+                           
+                           <p:commandButton id="register" value="#{res.Register}" action="#{registerUserController.save()}" 
+						 ajax="false" />
+	</p:panel>
+
+</ui:composition>
+</html>
+

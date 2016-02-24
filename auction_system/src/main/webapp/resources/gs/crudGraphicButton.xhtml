@@ -1,0 +1,55 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+        xmlns:gs="http://java.sun.com/jsf/composite/gs"
+      xmlns:composite="http://java.sun.com/jsf/composite"> 
+
+<composite:interface>
+	<composite:attribute name="title" required="true" />
+	<composite:attribute name="addUpdate" required="false" />
+	<composite:attribute name="modifyUpdate" required="false" />	
+	<composite:attribute name="deleteUpdate" required="false" />
+	<composite:attribute name="viewUpdate" required="false" />
+	<composite:attribute name="addAction" required="false" method-signature="java.lang.String action()"/>
+	<composite:attribute name="modifyAction" required="false" method-signature="java.lang.String action()"/>
+	<composite:attribute name="viewAction" required="false" method-signature="java.lang.String action()"/>
+	<composite:attribute name="deleteAction" required="false" method-signature="java.lang.String action()"/>
+	<composite:attribute name="disabled" required="false" default="false"/>
+</composite:interface> 
+    
+<composite:implementation>
+
+	
+    <gs:commandButton id="plusButtonId" icon="ui-icon-plus"
+         title="#{res.Add} #{cc.attrs.title}"
+      	 update="#{cc.attrs.addUpdate}" 
+         action="#{cc.attrs.addAction}"
+         rendered="#{not empty cc.attrs.addAction}"
+         disabled="#{cc.attrs.disabled}"/>    
+	
+	<gs:commandButton id="pencilButtonId" icon="ui-icon-pencil"
+		title="#{res.Modify} #{cc.attrs.title}"
+		update="#{cc.attrs.modifyUpdate}"
+		action="#{cc.attrs.modifyAction}"
+		rendered="#{not empty cc.attrs.modifyAction}"/>
+
+	<gs:commandButton id="searchButtonId" icon="ui-icon-search"
+		title="#{res.View} #{cc.attrs.title}"
+		update="#{cc.attrs.viewUpdate}"
+		action="#{cc.attrs.viewAction}"
+		rendered="#{not empty cc.attrs.viewAction}"/>		
+
+	<gs:commandButton id="trashButtonId" icon="ui-icon-trash"
+		title="#{res.Delete} #{cc.attrs.title}"
+		update="#{cc.attrs.deleteUpdate}"
+		action="#{cc.attrs.deleteAction}"
+		rendered="#{not empty cc.attrs.deleteAction}"
+		disabled="#{cc.attrs.disabled}"/>
+
+</composite:implementation>
+      
+</html>
+
+

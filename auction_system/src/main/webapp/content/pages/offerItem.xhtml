@@ -1,0 +1,73 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:gs="http://java.sun.com/jsf/composite/gs">
+    <p:panel id="addItem">
+        
+        <h:panelGroup id="itemGroup">
+        
+        Fill the details of an item you want to sell in an auction
+         <br/><br/>
+
+            <p:dataTable styleClass="wrapDataTabel"  id="itemDataTable"
+                         value="#{offerItemController.items}" var="itemDef">
+               
+                <p:column headerText="Name">
+                                      
+                	<gs:textInput inputName="Name" id="name" 
+                		width="10" 
+                		styleClass="gs_textinput_nowidth" 
+						required="true"
+						inputValue="#{itemDef.name}"
+						disabled="#{not empty itemDef.name}"/>                                    
+                </p:column> 
+                
+                <p:column headerText="Description">
+                                      
+                    <gs:textInput inputName="Description" id="Description" 
+                		width="10" 
+                		styleClass="gs_textinput_nowidth" 
+						required="true"
+						inputValue="#{itemDef.description}"
+						disabled="#{not empty itemDef.description}" />                                      
+                </p:column> 
+                
+                <p:column headerText="Starting Bid (In CAD)">
+					
+					<gs:inputNumber inputName="StartingBid" id="StartingBid" 
+						width="10" styleClass="gs_textinput_nowidth" 
+                        value="#{itemDef.startingBid}"
+                        required="true"
+                        disabled="#{not empty itemDef.startingBid}" />
+					                                 
+                </p:column> 
+                
+                <p:column headerText="#{res.config_action}">
+                
+                <gs:commandButton id="deleteButton" icon="ui-icon-trash" 
+                					  title="#{res.Delete}"
+                                      update=":mainPanel:itemGroup"
+                                      immediate="true"
+                                      action="#{offerItemController.deleteItem(itemDef)}" />
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>         
+          <gs:commandButton id="itemAddButtonIcon" 
+            update=":mainPanel:itemGroup"
+            title="#{res.Add}" icon="ui-icon-plus" 
+            immediate="true"
+            action="#{offerItemController.addItem()}" />       
+            		
+    </p:panel>
+    <gs:spacer height="25"/>
+    <p:outputPanel >
+        <gs:actionButtonPanel id="savebtn" actionBean="#{offerItemController}" 
+                              saveAction="save" updateOnSave=":mainPanel:gs_MainPanel,:globalMessages" 
+                              cancelAction="cancel" updateOnCancel=":mainPanel:gs_MainPanel"/>
+    </p:outputPanel>
+  
+</ui:composition>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"> 
+
+<composite:interface>
+	<composite:attribute name="value" required="false" />
+	<composite:attribute name="icon" required="false" />
+	<composite:attribute name="disabled" required="false" default="false"/>
+	<composite:attribute name="title" required="true" />
+	<composite:attribute name="action" required="true" method-signature="java.lang.String action()"/>
+	<composite:attribute name="update" required="false" default=":mainPanel:gs_MainPanel,:globalMessages"/>
+	<composite:attribute name="rendered" required="false"/>
+	<composite:attribute name="immediate" required="false" default="false"/>	
+</composite:interface>
+    
+<composite:implementation>
+
+ 
+		
+				<c:choose>
+				      <c:when test="${(not empty cc.attrs.icon)}">
+							<p:commandButton id="btnIcon" icon="#{cc.attrs.icon}" value="#{cc.attrs.value}" 
+											 title="#{cc.attrs.title}"
+											 update="#{cc.attrs.update}"
+											 disabled="#{cc.attrs.disabled}"
+											 action="#{cc.attrs.action}" 
+											 rendered="#{cc.attrs.rendered}"
+											 immediate="#{cc.attrs.immediate}"/>
+				      </c:when>	
+				      <c:when test="${(empty cc.attrs.icon)}">
+							<p:commandButton id="btn" value="#{cc.attrs.value}" 
+											 title="#{cc.attrs.title}"
+											 update="#{cc.attrs.update}"
+											 disabled="#{cc.attrs.disabled}"
+											 action="#{cc.attrs.action}" 
+											 rendered="#{cc.attrs.rendered}"
+											 immediate="#{cc.attrs.immediate}"/>
+					 </c:when>					      		
+				</c:choose>
+
+
+
+					 
+
+</composite:implementation>
+      
+</html>

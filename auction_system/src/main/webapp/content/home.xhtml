@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/content/main.xhtml">
+
+        <ui:define name="header">
+            <ui:include src="/content/header.xhtml"/>
+        </ui:define>
+
+        <ui:define name="menu">
+            <ui:include src="/content/menu.xhtml"/>
+        </ui:define>
+
+        <ui:define name="mainPanel">       
+                <p:panel id="gs_MainPanel" header="#{menuBean.current.screenHeader}" >
+                	<p:messages severity="error" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>
+                    <ui:include src="#{menuBean.current.screenName}"/>
+                </p:panel>
+        </ui:define>
+
+    </ui:composition>
+</html>

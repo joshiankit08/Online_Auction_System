@@ -1,0 +1,43 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="inputName" required="true" />
+            <composite:attribute name="required" required="false" default="false"/>
+        </composite:interface>
+
+        <composite:implementation>
+            <ui:param name="id"
+                      value="#{cc.attrs.inputName}" />
+            <ui:param name="label"
+                      value="#{cc.attrs.inputName}_Label" />
+            <ui:param name="tip_id"
+                      value="#{cc.attrs.inputName}_Tip" />
+            <ui:param name="title"
+                      value="#{cc.attrs.inputName}_Title" />          
+			<ui:param name="tooltipWidth"
+                      value="#{fn:length(res[title])> 40 ?'width:200px':''}" />
+            <ui:param name="labelWidth"
+                      value="#{fn:length(res[label])> 23 ?'width:120px':''}" />
+
+            <h:outputLabel
+                id="#{id}_Label"
+                value="#{res[label]}" 
+                for="#{id}_Label" style="#{labelWidth}" 
+                styleClass="gs_label" >
+                <h:outputLabel rendered="#{cc.attrs.required=='true'}"
+                               value="*" 
+                               for="#{id}_Label" 
+                               styleClass="gs_requiredField" />
+            </h:outputLabel>
+            <p:tooltip style="#{tooltipWidth}"  id="#{tip_id}" for="#{id}_Label" value="#{res[title]}" showEffect="fade" hideEffect="fade" /> 
+        </composite:implementation>
+    </h:body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+	    <p:menu style="width:200px;"> 
+			  <p:submenu label="#{res.menuDropDown_SignOn}" styleClass="gs_menuitem_header" >                         
+                    <p:menuitem id="login" styleClass="gs_menuitem_text" value="#{res['SignIn']}" 
+                    			actionListener="#{homeController.viewLoginPage()}" update=":mainPanel:gs_MainPanel"/>
+                    <p:menuitem id="register" styleClass="gs_menuitem_text" value="#{res['RegisterNewUser']}" 
+                    			actionListener="#{homeController.viewRegistrationPage()}" update=":mainPanel:gs_MainPanel"/>
+                </p:submenu>
+                <p:submenu label="#{res.menuDropDown_AuctionSystem}" styleClass="gs_menuitem_header">   
+                <p:menuitem id="offer" styleClass="gs_menuitem_text" value="#{res['OfferItemForAuction']}" 
+                    			actionListener="#{offerItemController.viewOfferItemPage()}" action="#{offerItemController.getAllItems()}" update=":mainPanel:gs_MainPanel"/>                      
+                <p:menuitem id="openBids" styleClass="gs_menuitem_text" value="#{res['OpenBids']}" 
+                    			actionListener="#{openBidController.viewOpenBidPage()}" action="#{openBidController.getAllAuctions()}" update=":mainPanel:gs_MainPanel"/>
+                    
+                </p:submenu>
+	    </p:menu>      
+    </ui:composition>
+</html>

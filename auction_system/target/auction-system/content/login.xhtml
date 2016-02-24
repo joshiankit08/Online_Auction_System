@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:gs="http://java.sun.com/jsf/composite/gs">
+
+<ui:composition>
+	<p:panel>
+			Please Log in to have complete access to the Auction Resources
+		    <br/><br/>
+		 	<h:panelGrid id="userGrid" columns="2">
+		    
+				<gs:textInputLabel required="true"
+								inputName="Username" />
+				<gs:textInput inputName="Username" id="Username"
+								required="true"
+								inputValue="#{loginController.username}" />
+						
+				<gs:textInputLabel required="true"
+								inputName="Password" />
+				<gs:passwordInput inputName="Password" id="Password"
+								required="true"
+								inputValue="#{loginController.password}" />
+        </h:panelGrid>
+        
+        <gs:commandButton id="login"
+						  title="Login"
+						  value="#{res.Login}"
+		                  update=":mainPanel:gs_MainPanel,:globalMessages,:headerForm"
+		                  action="#{loginController.validateUsernamePassword()}"/>
+    </p:panel>                
+</ui:composition>
+
+</html>

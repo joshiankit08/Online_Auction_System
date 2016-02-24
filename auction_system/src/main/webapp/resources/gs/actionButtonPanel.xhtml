@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:gs="http://java.sun.com/jsf/composite/gs"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="actionBean" required="false" />
+            <composite:attribute name="saveAction" required="false" />
+            <composite:attribute name="cancelAction" required="false" />
+            <composite:attribute name="updateOnSave" required="false" default=":mainPanel:gs_MainPanel,:globalMessages" />
+            <composite:attribute name="updateOnCancel" required="false" default=":mainPanel:gs_MainPanel"/>
+            <composite:attribute name="disabled" required="false" default="false"/>
+        </composite:interface>
+
+        <composite:implementation>
+            <ui:param name="actionBean"
+                      value="#{cc.attrs.actionBean}" />
+            <ui:param name="saveAction"
+                      value="#{cc.attrs.saveAction}" />
+            <ui:param name="cancelAction"
+                      value="#{cc.attrs.cancelAction}" />
+            <ui:param name="disabled"
+                      value="#{cc.attrs.disabled}" />          
+           
+                 
+                <gs:commandButton title="#{res.Save}" value="#{res.Save}" 
+                                 update="#{cc.attrs.updateOnSave}" 
+                                 id="addButton"  
+                                 action="#{actionBean[saveAction]}" 
+                                 rendered="#{not empty saveAction}" 
+                                 disabled="#{cc.attrs.disabled}"/>  
+                  
+               <gs:spacer width="10"/>
+                                   
+               <gs:commandButton title="#{res.Cancel}" value="#{res.Cancel}" 
+                                 update="#{cc.attrs.updateOnCancel}" 
+                                 id="cancelButton" 
+                                 action="#{actionBean[cancelAction]}"  
+                                 immediate="true"
+                                 disabled="#{cc.attrs.disabled}"/> 
+                                                                          	
+        </composite:implementation>
+    </h:body>
+</html>

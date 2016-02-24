@@ -1,0 +1,71 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"      
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="inputName" required="true" />
+            <composite:attribute name="inputValue" required="true" />
+            <composite:attribute name="readonly" required="false" default="false" />
+            <composite:attribute name="styleClass" required="false" default="gs_textinput" />
+            <composite:attribute name="disabled" required="false" default="false" />
+            <composite:attribute name="required" required="false" default="false" />
+            <composite:attribute name="width" required="false" default="25" />
+            <composite:attribute name="validation" required="false" />
+            <composite:attribute name="regexPattern" required="false" />
+            <composite:attribute name="regexValidationMessage" required="false" />
+            <composite:attribute name="maxlength" required="false" default="100"/>
+            <composite:attribute name="rendered" required="false" />
+            <composite:attribute name="title" required="false" />
+        </composite:interface>
+
+        <composite:implementation>
+            <ui:param name="id"
+                      value="#{cc.attrs.inputName}" />
+            <ui:param name="tip_id"
+                      value="#{cc.attrs.inputName}_Tip" />
+            <ui:param name="title"
+                      value="#{cc.attrs.inputName}_Title" />
+            <ui:param name="requiredMessage"
+                      value="#{cc.attrs.inputName}_Required_Message" />
+            <ui:param name="validation"
+                      value="#{cc.attrs.validation}" />
+            <ui:param name="maxlength"
+                      value="#{cc.attrs.maxlength}" />
+            <ui:param name="regexPattern"
+                      value="#{cc.attrs.regexPattern}" />            
+            
+            <p:inputText rendered="#{cc.attrs.rendered}" 
+                id="#{id}"                
+                maxlength="#{cc.attrs.maxlength}" 
+                value="#{cc.attrs.inputValue}" 
+                required="#{cc.attrs.required}"
+                size="#{cc.attrs.width}"
+                readonly="#{cc.attrs.readonly}"
+                styleClass="#{cc.attrs.styleClass}" 
+                disabled="#{cc.attrs.disabled}" 
+                onkeypress="#{cc.attrs.onkeypress}"                
+                requiredMessage="#{res[requiredMessage]}"
+                validatorMessage="#{cc.attrs.regexValidationMessage}"
+                title="#{cc.attrs.title}">
+                <f:converter converterId="com.auction.ui.utilities.StringTrimmer" />
+				
+                <c:choose>   
+	                <c:when test="${validation!=null}">
+	                	<f:validator validatorId="${validation}"/>
+	                </c:when>
+	                <c:when test="${regexPattern!=null}">
+	                	<f:validateRegex pattern="${regexPattern}"/>
+	                </c:when>                    
+                </c:choose>
+               
+            </p:inputText>
+        </composite:implementation>
+    </h:body>
+</html>

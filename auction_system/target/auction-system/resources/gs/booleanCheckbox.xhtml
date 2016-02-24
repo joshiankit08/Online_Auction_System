@@ -1,0 +1,52 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+  <!-- INTERFACE -->
+  <composite:interface>
+    <composite:attribute name="inputName" required="true" />
+    <composite:attribute name="value" required="true"/>
+    <composite:attribute name="required" required="false" default="false" />
+    <composite:attribute name="ajaxUpdate" required="false" />
+    <composite:attribute name="event" required="false" />
+    <composite:attribute name="listener" required="false" />
+    <composite:attribute name="actionBean" required="false" />
+    <composite:attribute name="disbaled" required="false" default="false" />
+  </composite:interface>
+
+  <!-- IMPLEMENTATION -->          
+  <composite:implementation>
+        <ui:param name="id" value="#{cc.attrs.inputName}" />
+        <ui:param name="tip_id" value="#{cc.attrs.inputName}_Tip" />
+        <ui:param name="title" value="#{cc.attrs.inputName}_Title" />
+        <ui:param name="requiredMessage" value="#{cc.attrs.inputName}_Required_Message" />
+        <ui:param name="ajaxUpdate" value="#{cc.attrs.ajaxUpdate}" />
+        <ui:param name="event" value="#{cc.attrs.event}" />
+        <ui:param name="listener" value="#{cc.attrs.listener}" />
+        <ui:param name="actionBean" value="#{cc.attrs.actionBean}" />
+        
+        <p:selectBooleanCheckbox id="#{id}" 
+        		disabled="#{cc.attrs.disabled}"
+		        value="#{cc.attrs.value}" 
+		        required="#{cc.attrs.required}" 
+		        requiredMessage="#{res[requiredMessage]}" >
+		    <c:choose>
+            	 <c:when test="#{listener!=null}">
+	               <p:ajax event="change" listener="#{actionBean[listener]}"   update="#{ajaxUpdate}"  />
+	            </c:when>
+				<c:otherwise test="#{event != null}">
+                   <p:ajax event="change" update="#{ajaxUpdate}" immediate="true" process="#{ajaxUpdate}"/>
+               </c:otherwise>
+			</c:choose>	 
+		</p:selectBooleanCheckbox>		        
+            
+        <p:tooltip id="#{tip_id}" for="#{id}" value="#{res[title]}" showEvent="focus" hideEvent="blur" /> 
+  </composite:implementation>
+</html>

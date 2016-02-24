@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <composite:interface>
+        <composite:attribute name="inputName" required="true" />
+        <composite:attribute name="dateValue" required="false" />
+         <composite:attribute name="mindate" required="mindate" />
+        <composite:attribute name="size" required="false" />
+        <composite:attribute name="required" required="false" default="false" />
+        <composite:attribute name="disabled" required="false" default="false" />
+        <composite:attribute name="pattern" required="false" default="MM/dd/yyyy" />
+    </composite:interface>
+
+    <composite:implementation>
+        <ui:param name="id" value="#{cc.attrs.inputName}" />
+        <ui:param name="tip_id" value="#{cc.attrs.inputName}_Tip" />
+        <ui:param name="title" value="#{cc.attrs.inputName}_Title" />
+        <ui:param name="requiredMessage" value="#{cc.attrs.inputName}_Required_Message" />
+        <ui:param name="date" value="#{cc.attrs.dateValue}" />
+        <p:calendar id="#{id}" mindate="#{cc.attrs.mindate}" pattern="#{cc.attrs.pattern}"
+                    value="#{date}" 
+                    locale="en"   disabled="#{cc.attrs.disabled}" 
+                    readonlyInput="true" 
+                    navigator="true"
+                    showOn="button"
+                    required="#{cc.attrs.required}"
+                    requiredMessage="#{res[requiredMessage]}"
+                    size="#{cc.attrs.size}"
+                    styleClass="gs_textinput"/>
+
+        <p:tooltip id="#{tip_id}" for="#{id}" value="#{res[title]}" showEvent="focus" hideEvent="blur" /> 			
+    </composite:implementation>
+
+</html>

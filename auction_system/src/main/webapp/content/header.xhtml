@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+	<table class="headerWrapper" id="header">
+		<tr>
+			<td align="left" valign="top">
+				<table>
+					<tr>
+						<h:body>
+							<h:form>
+								<p:commandButton action="#{homeController.viewHomePage()}"
+									value="#{res.Home}" icon="fa fa-home" ajax="false" />
+							</h:form>
+						</h:body>
+					</tr>
+				</table>
+			</td>
+			<td align="right" valign="top" >
+				<table>
+					<tr>
+						<h:body>
+							<h:form >
+								<p:outputLabel rendered="#{loginController.isUserLoggedIn()}" value="You are logged in as," />
+								<p:outputLabel rendered="#{loginController.isUserLoggedIn()}" value="#{sessionScope['username']}" />
+								<br/>
+								<p:commandButton rendered="#{loginController.isUserLoggedIn()}" action="#{loginController.logout()}"
+									value="#{res.logout}" ajax="false"/>
+							</h:form>
+						</h:body>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</ui:composition>
+</html>

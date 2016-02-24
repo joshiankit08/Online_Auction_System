@@ -1,0 +1,55 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:gs="http://java.sun.com/jsf/composite/gs">
+	<p:panel>
+		<h:messages globalOnly="true">
+			<h:panelGrid id="welcome" columns="1">
+				
+					<h1 style="color:Navy; font-size: 200%; align:center">
+					Welcome to the World of <b>Online Auction System Application</b>
+					</h1>
+					<p>
+					This application is created as a course project at Concordia University, Montreal. 
+					<br />
+					<br /> 
+					The application lets you make a bid for all the active
+					auctions as well as allows you to offer an item for the auction.<br/>
+					All this can be done by simply registering yourself to our 'Online
+					Auction System Application'. 
+					<br /> 
+					<br /> 
+					You should see the Navigation bar to the left where you can register as user or sign
+					in and access all the auction resources.
+					<br/><br/>
+					</p>
+					<p:graphicImage library="images" align="center" name="HomePageImg.jpg" style="width:700px;height:300px;margin-left:150px" /> 
+				
+			</h:panelGrid>
+		</h:messages>
+		<ui:remove>
+			<p:panel>
+				<table border="1">
+					<tr>
+						<td><h:outputText styleClass="gshome_label"
+								value="Sign In Existing User" /></td>
+						<td><h:outputText styleClass="gshome_label"
+								value="Register New User" /></td>
+					</tr>
+					<tr>
+						<td><gs:commandButton id="login" title="Login"
+								value="#{res.Login}" update=":mainPanel:gs_MainPanel"
+								action="#{homeController.viewLoginPage()}" /></td>
+						<td><gs:commandButton id="register" title="Register New User"
+								value="#{res.RegisterNewUser}" update=":mainPanel:gs_MainPanel"
+								action="#{homeController.viewRegistrationPage()}" /></td>
+					</tr>
+				</table>
+			</p:panel>
+		</ui:remove>
+	</p:panel>
+</ui:composition>
+

@@ -1,0 +1,48 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <composite:interface>
+        <composite:attribute name="inputName" required="true" />
+        <composite:attribute name="inputValue" required="true" />            
+        <composite:attribute name="itemLabel" required="true" />            
+        <composite:attribute name="actionBean" required="true" />
+        <composite:attribute name="converter" required="true" />
+        <composite:attribute name="sourceCaption" required="true" />
+        <composite:attribute name="targetCaption" required="true" />
+
+    </composite:interface>
+
+    <composite:implementation>
+        <ui:param name="id" value="#{cc.attrs.inputName}" />
+        <ui:param name="value" value="#{cc.attrs.inputValue}" />
+        <ui:param name="label" value="#{cc.attrs.itemLabel}" />
+        <ui:param name="actionBean" value="#{cc.attrs.actionBean}" />
+        <ui:param name="converterMethod" value="#{cc.attrs.converter}" />
+
+        <ui:param name="listner" value="#{cc.attrs.itemSelectListner}" />
+        <ui:param name="ajaxUpdate" value="#{cc.attrs.ajaxUpdate}" />
+
+        <p:pickList 
+            id="#{id}"  
+            value="#{value}" 
+            var="Iter"
+            itemValue="#{Iter}" 
+            itemLabel="#{Iter[label]}"
+            converter="#{actionBean[converterMethod]}" 
+            showCheckbox="true"
+            filterMatchMode="contains" showSourceFilter="true" showTargetFilter="true" >
+            <f:facet name="sourceCaption">#{cc.attrs.sourceCaption}</f:facet>  
+            <f:facet name="targetCaption">#{cc.attrs.targetCaption}</f:facet>					
+
+        </p:pickList>
+
+    </composite:implementation>
+</html>
+

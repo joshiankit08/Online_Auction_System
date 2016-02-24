@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <composite:interface>
+        <composite:attribute name="value" required="true" />
+        <composite:attribute name="min" required="false" default="0"/>
+        <composite:attribute name="max" required="false" />	  
+        <composite:attribute name="size" required="false" />
+        <composite:attribute name="disabled" required="false" default="false" />
+    </composite:interface>
+
+    <composite:implementation>
+        <ui:param name="value" value="#{cc.attrs.value}"/>
+        <ui:param name="min" value="#{cc.attrs.min}"/>
+        <ui:param name="max" value="#{cc.attrs.max}"/>
+        <ui:param name="size" value="#{cc.attrs.size}"/>
+
+        <p:spinner id="spinnerComponentId" value="#{value}"  disabled="#{cc.attrs.disabled}" onkeydown="if (event.preventDefault) {event.preventDefault(); } else {event.returnValue = false; }  return false;" 
+         min="#{min}" max="#{max}" size="#{size}" />
+    </composite:implementation>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+        <composite:interface>
+            <composite:attribute name="rootValue" required="false" />
+            <composite:attribute name="ajaxEvent" required="false" />
+            <composite:attribute name="ajaxUpdate" required="false" />
+            <composite:attribute name="actionBean" required="false" />
+            <composite:attribute name="ajaxListener" required="false" />
+            <composite:attribute name="nodeIter" required="false" />
+            <composite:attribute name="nodeValue" required="false" />
+        </composite:interface>
+
+        <composite:implementation>
+
+            <ui:param name="controller"
+                      value="#{cc.attrs.actionBean}" />   
+            <ui:param name="selectListner"
+                      value="#{cc.attrs.ajaxListener}" />
+            
+            <p:tree id="compTreeContainer" value="#{cc.attrs.rootValue}" var="#{cc.attrs.nodeIter}" dynamic="true" cache="false"  
+                    selectionMode="single">  
+                <p:ajax event="select" update="#{cc.attrs.ajaxUpdate}" listener="#{controller[selectListner]}" />
+                <p:treeNode>  
+                    <h:outputText value="#{cc.attrs.nodeValue}" />  
+                </p:treeNode>  
+            </p:tree>   
+        </composite:implementation>
+</html>

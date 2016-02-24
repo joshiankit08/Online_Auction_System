@@ -1,0 +1,97 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+  <!-- INTERFACE -->
+  <composite:interface>
+    <composite:attribute name="inputName" required="true" />
+    <composite:attribute name="value" required="true" />
+    
+    <composite:attribute name="required" required="false" default="false" />
+    <composite:attribute name="integerOnly" required="false"/>    
+    <composite:attribute name="disabled" required="false" default="false" />
+    <composite:attribute name="minIntegerDigits" required="false" />
+    <composite:attribute name="maxIntegerDigits" required="false" />
+    <composite:attribute name="minFractionDigits" required="false" />
+    <composite:attribute name="maxFractionDigits" required="false" />
+    <composite:attribute name="maxRange" required="false" />
+    <composite:attribute name="minRange" required="false" />
+    <composite:attribute name="styleClass" required="false" default="gs_textinputnumber" />
+    <composite:attribute name="width" required="false" default="25" />
+    <composite:attribute name="rendered" required="false" />
+  </composite:interface>
+
+  <!-- IMPLEMENTATION -->          
+  <composite:implementation>
+
+        <ui:param name="id" value="#{cc.attrs.inputName}" />
+        <ui:param name="tip_id" value="#{cc.attrs.inputName}_Tip" />
+        <ui:param name="label" value="#{cc.attrs.inputName}_Label" />
+        <ui:param name="title" value="#{cc.attrs.inputName}_Title" />
+        <ui:param name="requiredMessage" value="#{cc.attrs.inputName}_Required_Message" />  
+        <ui:param name="integerOnly" value="#{cc.attrs.integerOnly}" />
+        <ui:param name="maxIntegerDigits" value="#{cc.attrs.maxIntegerDigits}" />
+        <ui:param name="minIntegerDigits" value="#{cc.attrs.minIntegerDigits}" />
+        <ui:param name="maxFractionDigits" value="#{cc.attrs.maxFractionDigits}" />
+        <ui:param name="minFractionDigits" value="#{cc.attrs.minFractionDigits}" />
+        <ui:param name="maxRange" value="#{cc.attrs.maxRange}" />
+        <ui:param name="minRange" value="#{cc.attrs.minRange}" />
+                                
+        <p:inputText rendered="#{cc.attrs.rendered}" required="#{cc.attrs.required}"  requiredMessage="#{res[requiredMessage]}" 
+          onkeypress="#{integerOnly?'allowIntegersOnly(event)':''}" id="#{id}" value="#{cc.attrs.value}" label="#{res[label]}" 
+          styleClass="#{cc.attrs.styleClass}"  size="#{cc.attrs.width}" converter="numberConverter"   disabled="#{cc.attrs.disabled}" >
+         <c:choose>
+         	<c:when test="${maxRange!=null and minRange!=null}">
+        		 <f:validateLongRange maximum="${maxRange}" minimum="${minRange}" />
+			</c:when>
+			<c:when test="${maxRange!=null}">
+        		 <f:validateLongRange maximum="${maxRange}" />
+			</c:when>
+			<c:when test="${minRange!=null}">
+				<f:validateLongRange minimum="${minRange}" />
+			</c:when>
+         </c:choose>  
+        <c:choose>
+	        <c:when test="${integerOnly}">
+				<c:choose>
+				      <c:when test="${maxIntegerDigits > minIntegerDigits}">
+			        	<f:convertNumber integerOnly="#{integerOnly}"  
+								         minIntegerDigits="#{minIntegerDigits}" 
+								         maxIntegerDigits="#{maxIntegerDigits}"    					 
+			        	                 groupingUsed="false"/>
+				      </c:when>
+				      <c:otherwise>
+			        	<f:convertNumber integerOnly="#{integerOnly}"   					 
+			        	                 groupingUsed="false"/>
+				      </c:otherwise>
+				</c:choose>  
+	         </c:when>
+	         <c:otherwise>
+				<c:choose>
+				      <c:when test="${(maxFractionDigits > minFractionDigits) and (maxIntegerDigits > minIntegerDigits) }">
+				        	<f:convertNumber minFractionDigits="#{minFractionDigits}" 
+									         maxFractionDigits="#{maxFractionDigits}"  
+									         minIntegerDigits="#{minIntegerDigits}" 
+								             maxIntegerDigits="#{maxIntegerDigits}"   					 
+				        	                 groupingUsed="false"/>
+				      </c:when>	
+				      <c:when test="${(maxFractionDigits > minFractionDigits)}">
+				        	<f:convertNumber minFractionDigits="#{minFractionDigits}" 
+									         maxFractionDigits="#{maxFractionDigits}"  					 
+				        	                 groupingUsed="false"/>
+				      </c:when>					      		
+				      <c:otherwise>
+				      		<f:convertNumber groupingUsed="false"/>
+				      </c:otherwise>
+				</c:choose>
+	         </c:otherwise> 
+         </c:choose>  
+         <p:ajax event="blur" process="@this"/>    	                 
+        </p:inputText>    
+  </composite:implementation>
+</html>

@@ -1,0 +1,55 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:gs="http://java.sun.com/jsf/composite/gs"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<p:panel>
+		<h:panelGroup>
+			<p:dataTable id="auctionTable" styleClass="wrapDataTabel"
+				var="auction" value="#{openBidController.auctions}">
+
+				<p:column headerText="Item">
+					<h:outputText value="#{auction.itemName}" />
+				</p:column>
+
+				<p:column headerText="Description">
+					<h:outputText value="#{auction.description}" />
+				</p:column>
+
+				<p:column headerText="Owner">
+					<h:outputText value="#{auction.ownerName}" />
+				</p:column>
+
+				<p:column headerText="CurrentBid">
+					<h:outputText value="#{auction.currentBid}" />
+				</p:column>
+
+				<p:column headerText="Status">
+					<h:outputText value="#{auction.auctionStatus}" />
+				</p:column>
+
+				<p:column headerText="PlaceBid">
+					<gs:inputNumber inputName="StartingBid" id="StartingBid"
+						styleClass="gs_textinput_nowidth" value="#{auction.placeBid}" />
+				</p:column>
+
+				<p:column headerText="#{res.config_action}">
+					<gs:commandButton value="Submit Bid" title="Place Bid"
+						disable="#{openBidController.isUserObserver()}"
+						update=":mainPanel:auctionTable,:globalMessages" immediate="true"
+						action="#{openBidController.placeBid(auction)}" />
+				</p:column>
+
+				<p:column headerText="Winner">
+					<h:outputText value="#{auction.winnerName}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:panelGroup>
+	</p:panel>
+
+</ui:composition>

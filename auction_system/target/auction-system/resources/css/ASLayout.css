@@ -1,0 +1,329 @@
+body
+{
+    font-size: 0.7em !important;
+    font-weight: normal;
+}
+html, body
+{ 
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; 
+} 
+
+/************************************************************************
+*                         Start: Header CSS                             *
+*************************************************************************/
+.headerWrapper
+{
+   height: 50px;
+   width: 100%;
+   background-color: #F2F2F2;
+   border-bottom: 1px solid #999;
+}
+
+.headerItem
+{
+    display:inline-block; 
+    vertical-align: middle;
+}
+
+.headerWrapper #headerForm\:logoImg
+{
+    margin-left: 10px;
+    height: 40px;
+    float: left;
+}
+
+/*************************** End: Header CSS **************************/
+
+
+/************************************************************************
+*                         Start: Left Navigation CSS                    *
+*************************************************************************/
+.ui-menu 
+{
+    background-color: #F5F5F5 !important;
+}
+.gs_menuitem_header 
+{
+    color: #787878 !important;
+    background: #F5F5F5 !important;
+    font-size: 11px !important;
+    border-width: 0 !important;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 15px;
+    /*text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);*/
+    text-transform: uppercase;
+    width: 85% !important;
+}
+.gs_menuitem_text
+{
+    color: #0088CC !important;
+    float: left !important;
+    padding: 3px 15px !important;
+    width: 85% !important;
+}
+
+.ui-menu.ui-widget li > .ui-menuitem-link.ui-state-hover 
+{
+    background-color: #C3C3C3 !important;
+    background-image: none !important;
+    background-position: 0 center;
+    background-repeat: repeat-x;
+    text-decoration: none;
+    filter: none;
+}
+/*************************** End: Left Navigation CSS *******************/
+
+
+/************************************************************************
+*                         Start: Footer CSS                             *
+*************************************************************************/
+
+.footerWrapper
+{
+   font-size: 0.8em;
+   text-align: center;
+   background-color: #F9F9F9;
+   border-top: 1px solid #999;
+}
+/*************************** End: Footer CSS ****************************/
+
+/************************************************************************
+*                         Start: mainPanel CSS                             
+*************************************************************************/
+#mainPanel
+{
+    font-weight:normal !important;
+    font-family: tahoma,arial,verdana,trebuchet ms !important;
+}
+
+#mainPanel .ui-tabs-panels
+{
+   overflow: auto !important; 
+}
+
+#mainPanel\:gs_MainPanel
+{
+    border: none !important;
+    padding: 0;
+}
+
+.gs_label 
+{
+    color: #164E87;
+    float: right;
+}
+
+.gsPanelGrid
+{
+    border-spacing: 10px;
+}
+.gsActionButtonFooter
+{
+    text-align: center;
+    border: 0 none;
+}
+
+/*************************** End: mainPanel CSS ****************************/
+
+.ui-growl-item
+{
+	font-size: 1.0em;
+}
+/************************************************************************
+*                         Start: Error Message CSS                          
+*************************************************************************/
+.ui-messages-info, .ui-messages-warn, .ui-messages-error, .ui-messages-fatal 
+{
+    position: absolute;
+    z-index: 250;
+   -moz-box-shadow:3px 3px 5px 6px #ccc;
+   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+	box-shadow:3px 3px 5px 6px #ccc;
+}
+
+/*************************End : Error Message CSS  **********************/
+
+.gs_textinput, .gs_textinput input, .gs_select
+{
+    background:none !important;
+    opacity: 1 !important;
+    height: 20px;
+    padding: 4px 6px;
+    width: 170px !important;
+}
+
+.gs_textinputnumber, .gs_textinputnumber input
+{
+    background:none !important;
+    opacity: 1 !important;
+    height: 20px;
+    padding: 4px;
+    width: 174px !important;
+    text-align:	right;
+}
+ .ui-selectonemenu-label 
+{
+   /*  display: inline !important;
+    float: none !important; */
+    box-shadow:none !important;
+} 
+
+.ui-selectonemenu-panel .ui-selectonemenu-list-item
+{
+    font-size: 11px !important;
+}
+
+.ui-dialog
+{
+    font-size:1.1em;
+}
+.gs_breadcrumb_text 
+{
+    color: #0088CC !important;
+    text-decoration: none;
+}
+/***************************************************************************
+*         Overridden Styles
+*         Following section overrides the style of default prime faces theme
+***************************************************************************/
+.ui-widget-header
+{
+    background-color: #356AA0;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 22px;
+    position: relative;
+}
+
+.ui-dialog.ui-widget-content .ui-dialog-titlebar{
+    background-color: #356AA0 !important;
+    color: #FFFFFF;
+    font-size: 9px !important;
+    font-weight: 500;
+    line-height: 18px !important;
+    padding: 0.4em 0.4em 0.4em 1em;
+}
+.ui-dialog.ui-widget-content .ui-dialog-title 
+{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ui-dialog.ui-widget-content .ui-dialog-titlebar-close 
+{
+    margin-top: 5px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon 
+{
+    margin-top: 3px;
+    padding: 0px;
+}
+
+.ui-datatable .ui-datatable-header
+{
+    background: #F2F2F2 !important;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 18px;
+    color: #164E87;
+    text-align: right;
+}
+.ui-datatable  thead tr[role="row"] th
+{
+    background: #F2F2F2 !important;
+    line-height: 18px;
+    text-align: left;
+    color:#164E87;
+    cursor:auto;
+}
+
+.ui-tabs, .ui-layout-unit, .gsPanel
+{
+    border: none !important;
+}
+
+.ui-datatable .ui-datatable-footer 
+{
+    padding: 4px !important;
+    text-align: left !important;
+}
+.ui-datatable tbody td.wrap
+{
+    white-space: normal;
+}
+.ui-widget
+{
+    font-size: 12px !important;
+    font-family: tahoma,arial,verdana,trebuchet ms !important;
+}
+
+.ui-panel-content .ui-widget-content table tr
+{
+    border: 1px solid #FFFFFF;
+}
+
+.ui-datatable-tablewrapper table tr
+{
+    border-bottom: 1px solid #DDDDDD !important;
+}
+
+.ui-datatable .ui-paginator 
+{
+    line-height: 18px;
+}
+
+.ui-panel-content .ui-widget-content table
+{
+    border-spacing: 10px;
+}
+
+.ui-layout-unit-content 
+{
+    padding: 0 !important;
+}
+table.jqplot-table-legend
+{
+ margin:1px;
+ position: relative !important;
+ left: 600px;
+}
+
+.monthly_costing table.jqplot-table-legend, .user_usage table.jqplot-table-legend
+{
+	top:-80px !important;
+}
+
+.saving_trend table.jqplot-table-legend, .user_usage table.jqplot-table-legend
+{
+	top:-80px !important;
+}
+/************* End of Overridden Styles  *************************/
+
+.wrapDataTabel table tbody td, .wrapDataTabel table thead th
+{
+	white-space: normal !important;
+}
+
+.wrapDataTabel table tbody td
+{
+	word-wrap: break-word;
+}
+
+.gs_requiredField
+{
+	color: #B94A48;
+}
+
+.gs_pagination_text 
+{
+    color: #0088CC !important;
+    text-decoration: none;
+    font-weight: bold;
+}

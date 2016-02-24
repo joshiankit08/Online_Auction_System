@@ -1,0 +1,34 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel>
+
+		<h:messages globalOnly="true">
+			<h:panelGrid id="welocome" columns="1">
+				<h:outputText id="welcomemsg" value=""/>
+				<h2>Welcome back, you are logged In to our Online Auction System.</h2>
+				
+				<br/><br/>
+				<b>Guidelines:</b><br/><br/>
+				1. You must be signed In to make or place a bid.<br/>
+				2. The enlisted customer can advertise many items for sale at a time.<br/>
+				3. The auction for an item remains open for the duration of 5 minutes.<br/>
+				4. In the event that no offer is received for a thing up for sale, the length of time stretches out for an additional 5 minutes, just once.<br/>
+				5. A client can bid as many times as he wishes for an item on auction.<br/>
+				6. A client can not leave the auction system if he is currently offering an item for auction or active in bidding for at least one item. i.e currently <br/>
+				   leading with the highest bid for at least one item. 
+				   <br/><br/><br/> Alright, all caught up,<br/>
+				You can now take the advantage of full services of our online auction system. So pump your heart up and access our Auction Resources to make or place bids.
+				<br/><br/><br/><br/><br/><br/>
+				<p:graphicImage library="images" name="Auction.jpg" style="width:500px;height:150px;margin-left:150px" />
+			</h:panelGrid>
+		</h:messages>
+
+	</p:panel>
+
+</ui:composition>
+

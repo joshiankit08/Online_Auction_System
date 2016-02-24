@@ -1,0 +1,36 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:body>
+        <composite:interface>
+            <composite:attribute name="inputName" required="true" />
+            <composite:attribute name="inputValue" required="true" />
+            <composite:attribute name="width" required="false" default="30" />
+        </composite:interface>
+
+        <composite:implementation>
+            <ui:param name="id"
+                      value="#{cc.attrs.inputName}" />
+            <ui:param name="tip_id"
+                      value="#{cc.attrs.inputName}_Tip" />
+            <ui:param name="title"
+                      value="#{cc.attrs.inputName}_Title" />
+            <ui:param name="requiredMessage"
+                      value="#{cc.attrs.inputName}_Required_Message" />
+            
+            <p:selectOneRadio 
+                id="#{id}" 
+                value="#{cc.attrs.inputValue}" >
+                <f:selectItem  itemValue="#{true}" itemLabel="Yes"  />
+                <f:selectItem  itemValue="#{false}" itemLabel="No" />
+         	</p:selectOneRadio>
+        <p:tooltip id="#{tip_id}" for="#{id}" value="#{res[title]}" showEvent="focus" hideEvent="blur" /> 
+        </composite:implementation>
+    </h:body>
+</html>
